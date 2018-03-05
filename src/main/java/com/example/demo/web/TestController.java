@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,5 +21,11 @@ public class TestController {
         map.addAttribute("host", "http://demo.example.com");
         // return模板文件的名称，对应src/main/resources/templates/index.html
         return "test";
+    }
+
+    @ResponseBody
+    @RequestMapping("/test")
+    public String test() {
+        return "hello world";
     }
 }
