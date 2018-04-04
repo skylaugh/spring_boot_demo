@@ -1,12 +1,12 @@
 package com.example.demo.web;
 
+import com.example.demo.service.HttpRequest;
 import com.example.demo.service.TestProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by leojia on 2018-03-01
@@ -26,6 +26,12 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/test")
     public String test() {
-        return "hello world";
+        String s = HttpRequest
+                .sendGet(
+                        "https://api.binance.com/api/v1/klines",
+                        "symbol=ETHUSDT"
+                                + "&interval=1m");
+        System.out.println(s);
+        return s;
     }
 }
